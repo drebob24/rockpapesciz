@@ -85,9 +85,23 @@ function game(){
     for (let i = 1; i <= 5; i++){
         let playerSelection = prompt("Whatcha choosin? Best of 5");
         let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("Player: " + playerWins);
-        console.log("Computer: " + computerWins);
+        // console.log(playRound(playerSelection, computerSelection));
+        // console.log("Player: " + playerWins);
+        // console.log("Computer: " + computerWins);
+
+        /* More climactic game setting. Computer cheats to force 5 rounds of play*/
+        if (playerWins === 2 && i < 5){
+            console.log(computerWinsRound(playerSelection))
+            console.log("Player: " + playerWins);
+            console.log("Computer: " + computerWins);
+        }
+        else {
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Player: " + playerWins);
+            console.log("Computer: " + computerWins);
+        }
+    
+
 
         //If either player gets to 3 wins before 5 rounds, they win the set so the loop needs
         //to end
@@ -110,4 +124,24 @@ function determineWinner($playerWins, $computerWins){
         return "Congrats you won!"
     else
         return "Computer reigns supreme!"
+}
+
+function computerWinsRound(playerSelection){
+    playerSelection = playerSelection.toLowerCase();
+
+    if (playerSelection === "rock"){
+        computerWins++;
+        return "You Lose! Paper beats Rock.";
+    }
+    else if (playerSelection === "paper"){
+        computerWins++;
+        return "You Lose! Scissors beats Paper.";
+    }
+    else if (playerSelection === "scissors"){
+        computerWins++;
+        return "You Lose! Rock beats Scissors.";
+    }
+    else
+        drawCount++; //To decrease the Round (i variable) in game()
+        return "Please choose Rock, Paper, or Scissors";
 }
