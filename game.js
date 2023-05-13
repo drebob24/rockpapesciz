@@ -1,4 +1,4 @@
-/* Ask for a user insput
+/* Ask for a user insput XX
 Generate computer choice XX
 Compare User vs Computer XX
 Return Win/Lose XX
@@ -13,7 +13,6 @@ let drawCount = 0;
 
 function getComputerChoice(){
     let compChoice = getRandomInt();
-    console.log(compChoice);
     if (compChoice === 0) {
         return "Rock";
     }
@@ -30,8 +29,7 @@ function getRandomInt() {
 
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
-    console.log(playerSelection);
-    
+
     if (playerSelection === "rock"){
         if (computerSelection === "Paper"){
             computerWins++;
@@ -70,12 +68,14 @@ function playRound(playerSelection, computerSelection){
             return "You Win! Scissors beats Paper";
         }
         else
-            drawCount++
+            drawCount++;
             return "Draw! Go Again.";
         
     }
     else
+        drawCount++; //To decrease the Round (i variable) in game()
         return "Please choose Rock, Paper, or Scissors";
+
 }
 
 function game(){
@@ -83,16 +83,18 @@ function game(){
     computerWins = 0;
     drawCount = 0;
     for (let i = 1; i <= 5; i++){
-        //Call to get user input
-        let playerSelection = "PAPER";
-        //Call to get computerChoice
+        let playerSelection = prompt("Whatcha choosin? Best of 5");
         let computerSelection = getComputerChoice();
-        //Call to Play Round
         console.log(playRound(playerSelection, computerSelection));
-        //Print Result
         console.log("Player: " + playerWins);
         console.log("Computer: " + computerWins);
-        //increase Player or Computer Win count --handled in playRound
+
+        //If either player gets to 3 wins before 5 rounds, they win the set so the loop needs
+        //to end
+        if (playerWins === 3 || computerWins === 3){
+            i = 6;
+        }
+
         //To make it a true best of 5, Draws are not counted
         if (drawCount > 0) {
             i--;
