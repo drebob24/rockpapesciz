@@ -145,3 +145,12 @@ function computerWinsRound(playerSelection){
         drawCount++; //To decrease the Round (i variable) in game()
         return "Please choose Rock, Paper, or Scissors";
 }
+
+//Game UI
+const btns = document.querySelectorAll('button');
+btns.forEach(choice => {
+    choice.addEventListener('click', (e) => {
+        console.log(e.target.id);
+        console.log(playRound(e.target.id, "Paper"));
+    });   
+});
