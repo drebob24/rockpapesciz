@@ -150,7 +150,9 @@ function computerWinsRound(playerSelection){
 const btns = document.querySelectorAll('button');
 btns.forEach(choice => {
     choice.addEventListener('click', (e) => {
-        console.log(e.target.id);
-        console.log(playRound(e.target.id, "Paper"));
+        const results = document.querySelector(".results");
+        const roundResult = document.createElement('p');
+        roundResult.textContent = playRound(e.target.id, "Paper");
+        results.appendChild(roundResult);
     });   
 });
