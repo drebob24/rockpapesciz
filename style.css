@@ -1,0 +1,23 @@
+.crab:hover {
+    content: url("./icons/crab-1.png");
+}
+
+.meteor:hover {
+    content: url("./icons/meteor-1.png");
+}
+
+.hero:hover {
+    content: url("./icons/hero-1.png");
+}
+
+.crabColor {
+    content: url("./icons/crab-1.png");
+}
+
+.meteorColor {
+    content: url("./icons/meteor-1.png");
+}
+
+.heroColor {
+    content: url("./icons/hero-1.png");
+}
