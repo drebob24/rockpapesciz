@@ -8,6 +8,8 @@ const roundResult = document.createElement('p');
 const tally = document.createElement('p');
 const victory = document.createElement('p');
 const compImg = document.querySelector(".computerIcon");
+const gameOver = document.querySelector('.gameOver');
+const body = document.querySelector('body');
 
 function getComputerChoice(){
     let compChoice = getRandomInt();
@@ -81,7 +83,7 @@ function scissorsLogic(){
 function checkIfWinner(){
     if (playerWins === 5 || computerWins === 5){
         victory.textContent = determineWinner();
-        results.appendChild(victory);
+        gameOver.appendChild(victory);
         btns.forEach(btn => btn.disabled = true);
         createResetButton();
     }
@@ -89,17 +91,22 @@ function checkIfWinner(){
 }
 
 function determineWinner(){
-    if (playerWins > computerWins)
+    if (playerWins > computerWins){
+        body.classList.add('victory');
         return "Congrats you won!"
-    else
+    }
+        
+    else{
+        body.classList.add('defeat');
         return "Computer reigns supreme!"
+    }
 }
 
 function createResetButton(){
     const resetButton = document.createElement('button');
     resetButton.textContent = 'Go Again?';
     resetButton.classList.add("reset");
-    results.appendChild(resetButton);
+    gameOver.appendChild(resetButton);
     const reset = document.querySelector('.reset');
     reset.addEventListener('click', () => resetGame());
 }
@@ -108,9 +115,12 @@ function resetGame(){
     playerWins = 0;
     computerWins = 0;
     btns.forEach(btn => btn.disabled = false);
-    compImg.src = '';
+    compImg.src = './icons/decision.png';
     changeButtons('reset');
     results.replaceChildren();
+    gameOver.replaceChildren();
+    body.classList.remove('victory');
+    body.classList.remove('defeat');
 }
 
 const btns = document.querySelectorAll('.choice');
